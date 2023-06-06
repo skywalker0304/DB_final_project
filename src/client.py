@@ -5,7 +5,7 @@ import pickle
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 ip_addr = input("Enter the ip address you want to connect")
-port = input("Enter the port you want to connect")
+port = int(input("Enter the port you want to connect"))
 
 # Connect to the server
 client_socket.connect((ip_addr, port))
@@ -36,11 +36,11 @@ while True:
 
         for ch in preprocessing_methods_string:
             if ch == "1":
-                preprocessing_methods_list.append["remove_duplicates"]
+                preprocessing_methods_list.append("remove_duplicates")
             if ch == "2":
-                preprocessing_methods_list.append["handle_missing_values"]
+                preprocessing_methods_list.append("handle_missing_values")
             if ch == "3":
-                preprocessing_methods_list.append["feature_scaling"]
+                preprocessing_methods_list.append("feature_scaling")
 
         predict_column = input("Enter the column you want to predict")
 

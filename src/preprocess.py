@@ -12,6 +12,28 @@ from typing import List, Tuple
 import matplotlib.pyplot as plt
 import seaborn as sn
 
+def preprocess_data(data : pd.DataFrame, preprocessing_methods:list, features:list):
+    # Apply data preprocessing methods
+    preprocessed_data = data.copy()
+
+    if 'remove_duplicates' in preprocessing_methods:
+        preprocessed_data.drop_duplicates(inplace=True)
+
+    if 'standard_scaling' in preprocessing_methods:
+        preprocessed_data = standard_scaling(preprocessed_data, features)
+    elif 'min_max_scaling' in preprocessing_methods:
+        preprocessed_data = min_max_scaling(preprocessed_data, features, 0, 1)
+
+
+    if 'impute_mean' in preprocessing_methods:
+        preprocessed_data = data_replace_NaN_with_type(preprocessed_data, 'mean')
+    elif 'impute_median' in preprocessing_methods:
+        preprocessed_data = data_replace_NaN_with_type(preprocessed_data, 'median')
+    elif 'impute_most_frequent' in preprocessing_methods:
+        preprocessed_data = data_replace_NaN_with_type(preprocessed_data, 'most_frequent')
+
+    return preprocessed_data
+
 ################# impute missing values #####################3
 
 # replace all NaN to 0
