@@ -1,15 +1,11 @@
 from pymongo import MongoClient
+import mindsdb
 import sys
 
-def input_parsing():
-    if len(sys.argv) != 3:
-        print("expected 2 additional arguments")
-        print(f"only get {len(sys.argv)}")
-        exit(0)
 
-    db_name = sys.argv[1]
-    feature = sys.argv[2]
-    connect(db_name)
+def start_mindsdb():
+    mdb = mindsdb.MindsDB()
+    mdb.start()
 
 
 def connect(db_name):
