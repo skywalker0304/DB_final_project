@@ -23,6 +23,20 @@ def preprocess_data(data, preprocessing_methods):
 
 
 def handle_client(conn, addr, request):
+    # Check if the database and collection exists
+    database = request['database']
+    collection = request['collection']
+    if database not in db_client.list_database_names():
+        response = {'response_type': 'error', 'message': 'Requested database does not exist'}
+        unexpected_response(conn, response)
+        return
+
+    db = db_client['database']
+    if collection not in db.list_collection_names():
+        response = {'response_type': 'error', 'message': 'Requested collection does not exist'}
+        unexpected_response(conn, response)
+        return
+
     # Perform operations based on the request type
     if request['request_type'] == 'predict':
         try:
@@ -34,13 +48,8 @@ def handle_client(conn, addr, request):
             epochs = request['epochs']
             batch_size = request['batch_size']
 
-            #connect to mongodb
-            client = MongoClient('localhost', 27017)
-            dbname = client['ML_final']
-            collection_name = dbname["train"]
-
             # Load and preprocess the data
-            data = pd.DataFrame(collection_name.find())
+            data = pd.DataFrame(collection.find())
             preprocessed_data = preprocess_data(data, preprocessing_methods)
 
             # Specify MindsDB model details
@@ -61,10 +70,9 @@ def handle_client(conn, addr, request):
             }
 
             # Make predictions with new data
-            
             preprocessed_new_data = data
             # Access the predictions
-            predictions = preprocessed_new_data["Danceability"]
+            predictions = preprocessed_new_data[predict_column]
 
             # Send back the predictions to the client
             response = {'response_type': 'predictions', 'data': predictions}
@@ -89,6 +97,11 @@ def handle_client(conn, addr, request):
     conn.close()
 
 
+def unexpected_response(conn, response):
+    conn.send(pickle.dumps(response))
+    conn.close()
+
+
 # Parse command line arguments
 parser = argparse.ArgumentParser(description='MindsDB Preprocessing and Model')
 parser.add_argument('--port', type=int, help='Specify the port number', default=8080)
@@ -104,6 +117,9 @@ print("Successful binding")
 # Listen for incoming connections
 server_socket.listen(1)
 print(f"Server is listening on port {args.port}...")
+
+#connect to mongodb
+db_client = MongoClient('localhost', 27017)
 
 while True:
     # Accept a new connection
