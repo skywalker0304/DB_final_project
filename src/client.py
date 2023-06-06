@@ -99,6 +99,15 @@ while True:
 
     # Show picture
     image_path = input("Enter the picture file name you want to saved: ")
+    received_data = b""
+    while True:
+        data = client_socket.recv(4096)
+        if not data:
+            break
+        received_data += data
+
+    with open(image_path, 'wb') as file:
+        file.write(received_data)
     image = Image.open(image_path)
     plt.imshow(image)
     plt.show()

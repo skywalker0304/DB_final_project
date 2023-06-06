@@ -1,5 +1,7 @@
 from pymongo import MongoClient
 from preprocess import preprocess_data
+from chart import heatmap, barChart
+import tempfile
 import numpy as np
 import pandas as pd
 import argparse
@@ -20,9 +22,11 @@ def train_model(preprocessed_data, preprocessed_test_data, predict_column):
     print("Train complete")
 
     # Make predictions with new data
+    Train_Y = np.matmul(X.to_numpy(), w_LIN)
     Test_Y = np.matmul(preprocessed_test_data.to_numpy(), w_LIN)
+    Train_Y = list(map(round, Train_Y))
     Test_Y = list(map(round, Test_Y))
-    return Test_Y
+    return (Test_Y, Train_Y, Y)
 
 def handle_client(conn, addr, request):
     # Check if the database and collection exists
@@ -85,7 +89,10 @@ def handle_client(conn, addr, request):
             # }
 
             # Access the predictions
-            predictions = train_model(preprocessed_train_data, preprocessed_test_data, predict_column)
+            train_result = train_model(preprocessed_train_data, preprocessed_test_data, predict_column)
+            predictions = train_result[0]
+            predict_train_y = train_result[1]
+            train_y = train_result[2]
 
             # Send back the predictions to the client
             response = {'response_type': 'predictions', 'data': np.mean(predictions)}
@@ -106,8 +113,17 @@ def handle_client(conn, addr, request):
     # Send the response to the client
     conn.send(pickle.dumps(response))
 
+    # Send picture
+    send_picture(heatmap(predict_train_y, train_y))
+    send_picture(barChart(predictions))
+
     # Close the connection
     conn.close()
+
+
+def send_picture(temp_file):
+    conn.sendall(temp_file)
+    temp_file.close()
 
 
 def unexpected_response(conn, response):
