@@ -1,5 +1,7 @@
 import socket
 import pickle
+from PIL import Image
+import matplotlib.pyplot as plt
 
 # Create a socket object
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -94,6 +96,12 @@ while True:
         print("An error occurred:", response['message'])
     else:
         print("Unknown response type")
+
+    # Show picture
+    image_path = input("Enter the picture file name you want to saved: ")
+    image = Image.open(image_path)
+    plt.imshow(image)
+    plt.show()
 
     # Ask if the user wants to continue
     user_input = input("Do you want to continue (y/n)? ")
