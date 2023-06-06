@@ -1,26 +1,11 @@
 from pymongo import MongoClient
+from preprocess import preprocess_data
 import numpy as np
 import pandas as pd
 import argparse
 import socket
 import pickle
 import threading
-
-
-def preprocess_data(data, preprocessing_methods):
-    # Apply data preprocessing methods
-    preprocessed_data = data.copy()
-
-    if 'remove_duplicates' in preprocessing_methods:
-        preprocessed_data.drop_duplicates(inplace=True)
-
-    if 'handle_missing_values' in preprocessing_methods:
-        preprocessed_data.fillna(method='ffill', inplace=True)
-
-    if 'feature_scaling' in preprocessing_methods:
-        preprocessed_data['feature'] = (preprocessed_data['feature'] - preprocessed_data['feature'].mean()) / preprocessed_data['feature'].std()
-
-    return preprocessed_data
 
 
 def train_model(preprocessed_data, preprocessed_test_data, predict_column):
