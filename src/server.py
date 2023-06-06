@@ -124,6 +124,7 @@ def handle_client(conn, addr, request):
     print("send picture 1 successfully")
 
     # Close the connection
+    print("Close connection")
     conn.close()
     
 
