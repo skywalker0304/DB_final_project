@@ -1,4 +1,4 @@
-#import mindsdb TODO
+from pymongo import MongoClient
 import pandas as pd
 import argparse
 import socket
@@ -34,8 +34,13 @@ def handle_client(conn, addr, request):
             epochs = request['epochs']
             batch_size = request['batch_size']
 
+            #connect to mongodb
+            client = MongoClient('localhost', 27017)
+            dbname = client['ML_final']
+            collection_name = dbname["train"]
+
             # Load and preprocess the data
-            data = pd.read_csv('path/to/your/dataset.csv')
+            data = pd.DataFrame(collection_name.find())
             preprocessed_data = preprocess_data(data, preprocessing_methods)
 
             # Specify MindsDB model details
@@ -55,17 +60,11 @@ def handle_client(conn, addr, request):
                 }
             }
 
-            # Train the MindsDB model
-            mdb = mindsdb.MindsDB()
-            mdb.learn(**model_details)
-
             # Make predictions with new data
-            new_data = pd.read_csv('path/to/new_data.csv')
-            preprocessed_new_data = preprocess_data(new_data, preprocessing_methods)
-            result = mdb.predict(when=preprocessed_new_data)
-
+            
+            preprocessed_new_data = data
             # Access the predictions
-            predictions = result.predicted_values[predict_column]
+            predictions = preprocessed_new_data["Danceability"]
 
             # Send back the predictions to the client
             response = {'response_type': 'predictions', 'data': predictions}
