@@ -42,6 +42,19 @@ while True:
             if ch == "3":
                 preprocessing_methods_list.append("feature_scaling")
 
+        preprocessing_methods_string = input("Do you want to impute mean? (y/n)")
+        if (preprocessing_methods_string == "y"):
+            preprocessing_methods_list.append("impute_mean")
+        
+        preprocessing_methods_string = input("Do you want to impute median? (y/n)")
+        if (preprocessing_methods_string == "y"):
+            preprocessing_methods_list.append("impute_median")
+        
+        preprocessing_methods_string = input("Do you want to impute frequency? (y/n)")
+        if (preprocessing_methods_string == "y"):
+            preprocessing_methods_list.append("impute_frequency")
+
+
         predict_column = input("Enter the column you want to predict")
 
         # Prepare the request for prediction

@@ -1,27 +1,11 @@
 from pymongo import MongoClient
+from preprocess import preprocess_data
 import numpy as np
 import pandas as pd
 import argparse
 import socket
 import pickle
 import threading
-
-
-def preprocess_data(data, preprocessing_methods):
-    # Apply data preprocessing methods
-    preprocessed_data = data.copy()
-
-    if 'remove_duplicates' in preprocessing_methods:
-        preprocessed_data.drop_duplicates(inplace=True)
-
-    if 'handle_missing_values' in preprocessing_methods:
-        preprocessed_data.fillna(method='ffill', inplace=True)
-
-    if 'feature_scaling' in preprocessing_methods:
-        preprocessed_data['feature'] = (preprocessed_data['feature'] - preprocessed_data['feature'].mean()) / preprocessed_data['feature'].std()
-
-    return preprocessed_data
-
 
 def handle_client(conn, addr, request):
     # Perform operations based on the request type
@@ -43,39 +27,24 @@ def handle_client(conn, addr, request):
 
             # Load and preprocess the data
             data = pd.DataFrame(train_collection.find())
-            preprocessed_data = preprocess_data(data, preprocessing_methods)
-
-            # Specify MindsDB model details
-            model_details = {
-                'name': 'my_model',
-                'predict': predict_column,
-                'data': preprocessed_data,
-                'learn': {
-                    'from_data': preprocessed_data,
-                    'to_predict': predict_column,
-                    'model': model,
-                    'model_settings': {
-                        'hidden_layers': hidden_layers,
-                        'epochs': epochs,
-                        'batch_size': batch_size
-                    }
-                }
-            }
-
-            
+            preprocessed_data = preprocess_data(data, preprocessing_methods, data.columns)
+            print(data[:10])
+ 
             # extract X and Y
-            X = preprocessed_data.drop(['Danceability'], axis=1)
-            Y = preprocessed_data['Danceability'].copy()
+            X = preprocessed_data.drop([predict_column], axis=1)
+            Y = preprocessed_data[predict_column].copy()
 
             #train model
             pinv_X = np.linalg.pinv(X.to_numpy())
             pinv_Y = np.array(Y)
             w_LIN = np.matmul(pinv_X, pinv_Y)
+            print("Train complete")
 
             # Make predictions with new data
             data = pd.DataFrame(test_collection.find())
-            preprocessed_new_data = preprocess_data(data, preprocessing_methods)
+            preprocessed_new_data = preprocess_data(data, preprocessing_methods, data.columns)
 
+            print(data[:10])
             Test_Y = np.matmul(preprocessed_new_data.to_numpy(), w_LIN)
             Test_Y = list(map(round, Test_Y))
 
