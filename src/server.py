@@ -23,7 +23,43 @@ def preprocess_data(data, preprocessing_methods):
     return preprocessed_data
 
 
+def train_model(preprocessed_data, preprocessed_test_data, predict_column):
+    # extract X and Y
+    X = preprocessed_data.drop([predict_column], axis=1)
+    Y = preprocessed_data[predict_column].copy()
+
+    # train model
+    pinv_X = np.linalg.pinv(X.to_numpy())
+    pinv_Y = np.array(Y)
+    w_LIN = np.matmul(pinv_X, pinv_Y)
+
+    # Make predictions with new data
+    Test_Y = np.matmul(preprocessed_test_data.to_numpy(), w_LIN)
+    Test_Y = list(map(round, Test_Y))
+    return Test_Y
+
+
 def handle_client(conn, addr, request):
+    # Check if the database and collection exists
+    database = request['database']
+    train_collection = request['train_collection']
+    test_collection = request['test_collection']
+    if database not in db_client.list_database_names():
+        response = {'response_type': 'error', 'message': 'Requested database does not exist'}
+        unexpected_response(conn, response)
+        return
+
+    db = db_client['database']
+    if train_collection not in db.list_collection_names():
+        response = {'response_type': 'error', 'message': 'Requested train collection does not exist'}
+        unexpected_response(conn, response)
+        return
+
+    if test_collection not in db.list_collection_names():
+        response = {'response_type': 'error', 'message': 'Requested test collection does not exist'}
+        unexpected_response(conn, response)
+        return
+
     # Perform operations based on the request type
     if request['request_type'] == 'predict':
         try:
@@ -35,52 +71,32 @@ def handle_client(conn, addr, request):
             epochs = request['epochs']
             batch_size = request['batch_size']
 
-            #connect to mongodb
-            client = MongoClient('localhost', 27017)
-            dbname = client['ML_final']
-            train_collection = dbname["train"]
-            test_collection = dbname["test"]
-
             # Load and preprocess the data
-            data = pd.DataFrame(train_collection.find())
-            preprocessed_data = preprocess_data(data, preprocessing_methods)
+            train_data = pd.DataFrame(train_collection.find())
+            preprocessed_train_data = preprocess_data(train_data, preprocessing_methods)
 
-            # Specify MindsDB model details
-            model_details = {
-                'name': 'my_model',
-                'predict': predict_column,
-                'data': preprocessed_data,
-                'learn': {
-                    'from_data': preprocessed_data,
-                    'to_predict': predict_column,
-                    'model': model,
-                    'model_settings': {
-                        'hidden_layers': hidden_layers,
-                        'epochs': epochs,
-                        'batch_size': batch_size
-                    }
-                }
+            test_data = pd.DataFrame(test_collection.find())
+            preprocessed_test_data = preprocess_data(test_data, preprocessing_methods)
+
+            # # Specify MindsDB model details
+            # model_details = {
+            #     'name': 'my_model',
+            #     'predict': predict_column,
+            #     'data': preprocessed_train_data,
+            #     'learn': {
+            #         'from_data': preprocessed_train_data,
+            #         'to_predict': predict_column,
+            #         'model': model,
+            #         'model_settings': {
+            #             'hidden_layers': hidden_layers,
+            #             'epochs': epochs,
+            #             'batch_size': batch_size
+            #         }
+            #     }
             }
 
-            
-            # extract X and Y
-            X = preprocessed_data.drop(['Danceability'], axis=1)
-            Y = preprocessed_data['Danceability'].copy()
-
-            #train model
-            pinv_X = np.linalg.pinv(X.to_numpy())
-            pinv_Y = np.array(Y)
-            w_LIN = np.matmul(pinv_X, pinv_Y)
-
-            # Make predictions with new data
-            data = pd.DataFrame(test_collection.find())
-            preprocessed_new_data = preprocess_data(data, preprocessing_methods)
-
-            Test_Y = np.matmul(preprocessed_new_data.to_numpy(), w_LIN)
-            Test_Y = list(map(round, Test_Y))
-
             # Access the predictions
-            predictions = Test_Y
+            predictions = train_model(preprocessed_train_data, preprocessed_test_data, predict_column)
 
             # Send back the predictions to the client
             response = {'response_type': 'predictions', 'data': predictions}
@@ -105,6 +121,11 @@ def handle_client(conn, addr, request):
     conn.close()
 
 
+def unexpected_response(conn, response):
+    conn.send(pickle.dumps(response))
+    conn.close()
+
+
 # Parse command line arguments
 parser = argparse.ArgumentParser(description='MindsDB Preprocessing and Model')
 parser.add_argument('--port', type=int, help='Specify the port number', default=8080)
@@ -120,6 +141,9 @@ print("Successful binding")
 # Listen for incoming connections
 server_socket.listen(1)
 print(f"Server is listening on port {args.port}...")
+
+# connect to mongodb
+db_client = MongoClient('localhost', 27017)
 
 while True:
     # Accept a new connection
