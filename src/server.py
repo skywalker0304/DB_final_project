@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import numpy as np
 import pandas as pd
 import argparse
 import socket
@@ -37,10 +38,11 @@ def handle_client(conn, addr, request):
             #connect to mongodb
             client = MongoClient('localhost', 27017)
             dbname = client['ML_final']
-            collection_name = dbname["train"]
+            train_collection = dbname["train"]
+            test_collection = dbname["test"]
 
             # Load and preprocess the data
-            data = pd.DataFrame(collection_name.find())
+            data = pd.DataFrame(train_collection.find())
             preprocessed_data = preprocess_data(data, preprocessing_methods)
 
             # Specify MindsDB model details
@@ -60,11 +62,25 @@ def handle_client(conn, addr, request):
                 }
             }
 
-            # Make predictions with new data
             
-            preprocessed_new_data = data
+            # extract X and Y
+            X = preprocessed_data.drop(['Danceability'], axis=1)
+            Y = preprocessed_data['Danceability'].copy()
+
+            #train model
+            pinv_X = np.linalg.pinv(X.to_numpy())
+            pinv_Y = np.array(Y)
+            w_LIN = np.matmul(pinv_X, pinv_Y)
+
+            # Make predictions with new data
+            data = pd.DataFrame(test_collection.find())
+            preprocessed_new_data = preprocess_data(data, preprocessing_methods)
+
+            Test_Y = np.matmul(preprocessed_new_data.to_numpy(), w_LIN)
+            Test_Y = list(map(round, Test_Y))
+
             # Access the predictions
-            predictions = preprocessed_new_data["Danceability"]
+            predictions = Test_Y
 
             # Send back the predictions to the client
             response = {'response_type': 'predictions', 'data': predictions}
