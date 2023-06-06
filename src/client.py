@@ -4,8 +4,8 @@ import pickle
 # Create a socket object
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-ip_addr = input("Enter the ip address you want to connect")
-port = int(input("Enter the port you want to connect"))
+ip_addr = input("Enter the ip address you want to connect: ")
+port = int(input("Enter the port you want to connect: "))
 
 # Connect to the server
 client_socket.connect((ip_addr, port))
@@ -13,54 +13,54 @@ print(f"Connected to server {ip_addr} on {port} port")
 
 while True:
     # Get user's request
-    db = input("Enter the database you want to use")
-    collection = input("Enter the collection you want to use")
+    db = input("Enter the database you want to use: ")
+    train_collection = input("Enter the collection you want to train on: ")
+    test_collection = input("Enter the collection you want to test on: ")
     user_input = input("Enter your request (predict, custom_operation): ")        
 
     if user_input == 'predict':
         preprocessing_methods_list = []
         preprocessing_methods_string = input(
-            "What kind of preprocessing methods do you want to use?\n"
-            "If you want to remove duplicates, please enter 1, \n"
-            "If you want to handle missing values, please enter 2.\n"
-            "If you want to do feature scaling, please enter 3\n"
-            "It is also OK if you want to choose multiple options, "
-            "e.g. 123 means do all three, and 12 means do the first two\n"
-            "If you don't want to use any, please enter None"
+            "Do you want to remove duplicates? (y/n) \n"
+        )
+        if preprocessing_methods_string == "y":
+                preprocessing_methods_list.append("remove_duplicates")
+
+        preprocessing_methods_string = input(
+            "If you want to apply standard scaling, please enter 1\n"
+            "If you want to apply min_max scaling, please enter 2\n"
+            "If you don't want to use any, please enter None\n"
         )
 
-        possible_list = ["1", "2", "3", "12", "13", "21", "23", "31", "32", "123", "132", "213", "231", "312", "321", "None"]
-        if preprocessing_methods_string not in possible_list:
-            print("Invalid request")
-            continue
+        if (preprocessing_methods_string == "1"):
+            preprocessing_methods_list.append("standard_scaling")
+        elif (preprocessing_methods_string == "2"):
+            preprocessing_methods_list.append("min_max_scaling")
 
-        for ch in preprocessing_methods_string:
-            if ch == "1":
-                preprocessing_methods_list.append("remove_duplicates")
-            if ch == "2":
-                preprocessing_methods_list.append("handle_missing_values")
-            if ch == "3":
-                preprocessing_methods_list.append("feature_scaling")
+        
+        preprocessing_methods_string = input(
+            "If you want to impute mean, please enter 1\n"
+            "If you want to impute median, please enter 2\n"
+            "If you want to impute frequency, please enter 3\n"
+            "If you don't want to use any, please enter None\n"
+        )
 
-        preprocessing_methods_string = input("Do you want to impute mean? (y/n)")
-        if (preprocessing_methods_string == "y"):
+        if (preprocessing_methods_string == "1"):
             preprocessing_methods_list.append("impute_mean")
-        
-        preprocessing_methods_string = input("Do you want to impute median? (y/n)")
-        if (preprocessing_methods_string == "y"):
+        elif (preprocessing_methods_string == "2"):
             preprocessing_methods_list.append("impute_median")
-        
-        preprocessing_methods_string = input("Do you want to impute frequency? (y/n)")
-        if (preprocessing_methods_string == "y"):
+        elif (preprocessing_methods_string == "3"):
             preprocessing_methods_list.append("impute_frequency")
+        
 
 
-        predict_column = input("Enter the column you want to predict")
+        predict_column = input("Enter the column you want to predict: ")
 
         # Prepare the request for prediction
         request = {
             'database': db,
-            'collection': collection,
+            'train_collection': train_collection,
+            'test_collection': test_collection,
             'request_type': 'predict',
             'preprocessing_methods': preprocessing_methods_list,
             'model': 'lightwood',

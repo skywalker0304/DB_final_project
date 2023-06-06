@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from sklearn.preprocessing import PolynomialFeatures, MinMaxScaler, StandardScaler
+from sklearn.preprocessing import PolynomialFeatures, MinMaxScaler, StandardScaler, OrdinalEncoder
 from sklearn.impute import SimpleImputer, KNNImputer
 from sklearn.ensemble import IsolationForest
 from sklearn.metrics import mean_absolute_error
@@ -15,6 +15,10 @@ import seaborn as sn
 def preprocess_data(data : pd.DataFrame, preprocessing_methods:list, features:list):
     # Apply data preprocessing methods
     preprocessed_data = data.copy()
+
+    string_cols = preprocessed_data.select_dtypes(include=['object']).columns.tolist()
+    encoder = OrdinalEncoder()
+    preprocessed_data[string_cols] = encoder.fit_transform(preprocessed_data[string_cols])
 
     if 'remove_duplicates' in preprocessing_methods:
         preprocessed_data.drop_duplicates(inplace=True)

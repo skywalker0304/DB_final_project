@@ -24,8 +24,6 @@ def train_model(preprocessed_data, preprocessed_test_data, predict_column):
     Test_Y = list(map(round, Test_Y))
     return Test_Y
 
-
->>>>>>> acaa59f1ba45e9cd48b8c6601dab19336fe769c4
 def handle_client(conn, addr, request):
     # Check if the database and collection exists
     database = request['database']
@@ -36,16 +34,20 @@ def handle_client(conn, addr, request):
         unexpected_response(conn, response)
         return
 
-    db = db_client['database']
+    db = db_client[database]
     if train_collection not in db.list_collection_names():
         response = {'response_type': 'error', 'message': 'Requested train collection does not exist'}
         unexpected_response(conn, response)
         return
+    
+    train_collection = db[train_collection]
 
     if test_collection not in db.list_collection_names():
         response = {'response_type': 'error', 'message': 'Requested test collection does not exist'}
         unexpected_response(conn, response)
         return
+    
+    test_collection = db[test_collection]
 
     # Perform operations based on the request type
     if request['request_type'] == 'predict':
@@ -59,10 +61,10 @@ def handle_client(conn, addr, request):
             batch_size = request['batch_size']
 
             # Load and preprocess the data
-            train_data = pd.DataFrame(train_collection.find())
+            train_data = pd.DataFrame(train_collection.find({}))
             preprocessed_train_data = preprocess_data(train_data, preprocessing_methods, train_data.columns)
 
-            test_data = pd.DataFrame(test_collection.find())
+            test_data = pd.DataFrame(test_collection.find({}))
             preprocessed_test_data = preprocess_data(test_data, preprocessing_methods, test_data.columns)
 
             # # Specify MindsDB model details
@@ -86,7 +88,7 @@ def handle_client(conn, addr, request):
             predictions = train_model(preprocessed_train_data, preprocessed_test_data, predict_column)
 
             # Send back the predictions to the client
-            response = {'response_type': 'predictions', 'data': predictions}
+            response = {'response_type': 'predictions', 'data': np.mean(predictions)}
         except Exception as e:
             response = {'response_type': 'error', 'message': str(e)}
 
@@ -115,7 +117,7 @@ def unexpected_response(conn, response):
 
 # Parse command line arguments
 parser = argparse.ArgumentParser(description='MindsDB Preprocessing and Model')
-parser.add_argument('--port', type=int, help='Specify the port number', default=8080)
+parser.add_argument('--port', type=int, help='Specify the port number', default=8081)
 args = parser.parse_args()
 
 # Create a socket object
