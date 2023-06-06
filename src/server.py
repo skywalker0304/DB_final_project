@@ -1,13 +1,13 @@
 from pymongo import MongoClient
 from preprocess import preprocess_data
 from chart import heatmap, barChart
-import tempfile
 import numpy as np
 import pandas as pd
 import argparse
 import socket
 import pickle
 import threading
+import time
 
 
 def train_model(preprocessed_data, preprocessed_test_data, predict_column):
@@ -114,16 +114,18 @@ def handle_client(conn, addr, request):
     conn.send(pickle.dumps(response))
 
     # Send picture
-    send_picture(heatmap(predict_train_y, train_y))
-    send_picture(barChart(predictions))
+    # heatmap_fig = heatmap(predict_train_y, train_y)
+    # conn.sendall(pickle.dumps(heatmap_fig))
+    # print("send picture 1 successfully")
+    
+    # block the server from consecutive sending two pictures
+    barchart_fig = barChart(predictions)
+    conn.sendall(pickle.dumps(barchart_fig))
+    print("send picture 1 successfully")
 
     # Close the connection
     conn.close()
-
-
-def send_picture(temp_file):
-    conn.sendall(temp_file)
-    temp_file.close()
+    
 
 
 def unexpected_response(conn, response):
@@ -133,7 +135,7 @@ def unexpected_response(conn, response):
 
 # Parse command line arguments
 parser = argparse.ArgumentParser(description='MindsDB Preprocessing and Model')
-parser.add_argument('--port', type=int, help='Specify the port number', default=8081)
+parser.add_argument('--port', type=int, help='Specify the port number', default=8080)
 args = parser.parse_args()
 
 # Create a socket object

@@ -98,19 +98,28 @@ while True:
         print("Unknown response type")
 
     # Show picture
-    image_path = input("Enter the picture file name you want to saved: ")
-    received_data = b""
-    while True:
-        data = client_socket.recv(4096)
-        if not data:
-            break
-        received_data += data
+    # image_path = input("Enter the picture file name you want to saved: ")
+    for i in range(1):
+        received_data = b""
+        print("waiting for server")
+        while True:
+            data = client_socket.recv(4096)
+            if not data:
+                break
+            received_data += data
 
-    with open(image_path, 'wb') as file:
-        file.write(received_data)
-    image = Image.open(image_path)
-    plt.imshow(image)
-    plt.show()
+        print("received picture, showing picture")
+        received_fig = pickle.loads(received_data)
+        plt.figure(received_fig.number)
+        plt.show()
+        print(f"show {i + 1} figure at client side")
+
+
+    # with open(image_path, 'wb') as file:
+    #    file.write(received_data)
+    # image = Image.open(image_path)
+    # plt.imshow(image)
+    # plt.show()
 
     # Ask if the user wants to continue
     user_input = input("Do you want to continue (y/n)? ")
