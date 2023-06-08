@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from preprocess import preprocess_data
-from chart import heatmap, barChart
+from chart import heatmap, barChart, missingMap, numeric_feature_barchart
 import numpy as np
 import pandas as pd
 import argparse
@@ -99,7 +99,62 @@ def handle_client(conn, addr, request):
         except Exception as e:
             response = {'response_type': 'error', 'message': str(e)}
 
+        # Send the response to the client
+        conn.send(pickle.dumps(response))
+
+        # Send picture
+        # heatmap_fig = heatmap(predict_train_y, train_y)
+        # conn.sendall(pickle.dumps(heatmap_fig))
+        # print("send picture 1 successfully")
+
+        # block the server from consecutive sending two pictures
+        barchart_fig = barChart(predictions)
+        conn.sendall(pickle.dumps(barchart_fig))
+        print("send picture 1 successfully")
+
+        # Close the connection
+        print("Close connection")
+        conn.close()
+
     elif request['request_type'] == 'mongodb_operation':
+        raise NotImplementedError
+
+        # Send the response to the client
+        conn.send(pickle.dumps(response))
+
+        # Close the connection
+        print("Close connection")
+        conn.close()
+
+    elif request['request_type'] == 'data_exploration':
+        collection = request['collection']
+        if collection not in db.list_collection_names():
+            response = {'response_type': 'error', 'message': 'Requested collection does not exist'}
+            unexpected_response(conn, response)
+            return
+
+        collection = db[collection]
+        # Load data
+        data = pd.DataFrame(collection.find({}))
+        response = {'response_type': 'data_exploration', 'message': 'Sending'}
+
+        # Send the response to the client
+        conn.send(pickle.dumps(response))
+
+        # Send picture
+        if 'show_missing_values' in request['data_exploration']:
+            missing_values_fig = missingMap(data)
+            conn.sendall(pickle.dumps(missing_values_fig))
+            print("send picture missing values successfully")
+
+        if 'show_feature_distributions' in request['data_exploration']:
+            numeric_feature_barchart_fig = numeric_feature_barchart(data, data.columns)
+            conn.sendall(pickle.dumps(numeric_feature_barchart_fig))
+            print("send picture feature distributions successfully")
+
+        # Close the connection
+        print("Close connection")
+        conn.close()
 
     elif request['request_type'] == 'custom_operation':
         try:
@@ -112,23 +167,12 @@ def handle_client(conn, addr, request):
         except Exception as e:
             response = {'response_type': 'error', 'message': str(e)}
 
-    # Send the response to the client
-    conn.send(pickle.dumps(response))
+        # Send the response to the client
+        conn.send(pickle.dumps(response))
 
-    # Send picture
-    # heatmap_fig = heatmap(predict_train_y, train_y)
-    # conn.sendall(pickle.dumps(heatmap_fig))
-    # print("send picture 1 successfully")
-
-    # block the server from consecutive sending two pictures
-    barchart_fig = barChart(predictions)
-    conn.sendall(pickle.dumps(barchart_fig))
-    print("send picture 1 successfully")
-
-    # Close the connection
-    print("Close connection")
-    conn.close()
-    
+        # Close the connection
+        print("Close connection")
+        conn.close()
 
 
 def unexpected_response(conn, response):

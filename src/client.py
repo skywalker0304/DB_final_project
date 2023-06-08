@@ -16,9 +16,9 @@ print(f"Connected to server {ip_addr} on {port} port")
 while True:
     # Get user's request
     db = input("Enter the database you want to use: ")
-    user_input = input("Enter your request (machine_learning, mongodb_operation, custom_operation): ")
+    user_input = input("Enter your request (machine_learning, mongodb_operation, data_exploration, custom_operation): ")
 
-    if user_input == 'predict':
+    if user_input == 'machine_learning':
         train_collection = input("Enter the collection you want to train on: ")
         test_collection = input("Enter the collection you want to test on: ")
         preprocessing_methods_list = []
@@ -76,6 +76,25 @@ while True:
             'database': db,
             'request_type': 'mongodb_operation',
             'db_operation': db_operation
+        }
+
+    elif user_input == 'data_exploration':
+        # Prepare the request for custom operation
+        collection = input("Please input the colleciton you want to explore: ")
+        data_exploration_string = input(
+            "If you want to show missing values, please enter 1\n"
+            "If you want to show feature distributions, please enter 2\n"
+        )
+        data_exploration_method = []
+        if data_exploration_string == "1":
+            data_exploration_method.append("show_missing_values")
+        if data_exploration_string == "2":
+            data_exploration_method.append("show_feature_distributions")
+        request = {
+            'database': db,
+            'request_type': 'data_exploration',
+            'collection': collection,
+            'data_exploration': data_exploration_method
         }
 
     elif user_input == 'custom_operation':
