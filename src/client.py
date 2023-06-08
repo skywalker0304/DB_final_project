@@ -26,7 +26,7 @@ while True:
             "Do you want to remove duplicates? (y/n) \n"
         )
         if preprocessing_methods_string == "y":
-                preprocessing_methods_list.append("remove_duplicates")
+            preprocessing_methods_list.append("remove_duplicates")
 
         preprocessing_methods_string = input(
             "If you want to apply standard scaling, please enter 1\n"
