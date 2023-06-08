@@ -16,11 +16,11 @@ print(f"Connected to server {ip_addr} on {port} port")
 while True:
     # Get user's request
     db = input("Enter the database you want to use: ")
-    train_collection = input("Enter the collection you want to train on: ")
-    test_collection = input("Enter the collection you want to test on: ")
-    user_input = input("Enter your request (predict, custom_operation): ")        
+    user_input = input("Enter your request (machine_learning, mongodb_operation, custom_operation): ")
 
     if user_input == 'predict':
+        train_collection = input("Enter the collection you want to train on: ")
+        test_collection = input("Enter the collection you want to test on: ")
         preprocessing_methods_list = []
         preprocessing_methods_string = input(
             "Do you want to remove duplicates? (y/n) \n"
@@ -39,7 +39,6 @@ while True:
         elif (preprocessing_methods_string == "2"):
             preprocessing_methods_list.append("min_max_scaling")
 
-        
         preprocessing_methods_string = input(
             "If you want to impute mean, please enter 1\n"
             "If you want to impute median, please enter 2\n"
@@ -53,8 +52,6 @@ while True:
             preprocessing_methods_list.append("impute_median")
         elif (preprocessing_methods_string == "3"):
             preprocessing_methods_list.append("impute_frequency")
-        
-
 
         predict_column = input("Enter the column you want to predict: ")
 
@@ -63,7 +60,7 @@ while True:
             'database': db,
             'train_collection': train_collection,
             'test_collection': test_collection,
-            'request_type': 'predict',
+            'request_type': 'machine_learning',
             'preprocessing_methods': preprocessing_methods_list,
             'model': 'lightwood',
             'predict_column': predict_column,
@@ -71,10 +68,21 @@ while True:
             'epochs': 1,
             'batch_size': 32
         }
+    elif user_input == 'mongodb_operation':
+        db_operation = input(
+            'Please enter the operation you want to do in mongosh syntax\nex: db.getCollection("data").find({})'
+        )
+        request = {
+            'database': db,
+            'request_type': 'mongodb_operation',
+            'db_operation': db_operation
+        }
+
     elif user_input == 'custom_operation':
         # Prepare the request for custom operation
+        custom_operation = input("Please input your custom operation: ")
         request = {
-            'request_type': 'custom_operation'
+            'request_type': custom_operation
         }
     else:
         print("Invalid request")
@@ -113,7 +121,6 @@ while True:
         plt.figure(received_fig.number)
         plt.show()
         print(f"show {i + 1} figure at client side")
-
 
     # with open(image_path, 'wb') as file:
     #    file.write(received_data)

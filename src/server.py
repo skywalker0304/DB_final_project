@@ -28,33 +28,33 @@ def train_model(preprocessed_data, preprocessed_test_data, predict_column):
     Test_Y = list(map(round, Test_Y))
     return (Test_Y, Train_Y, Y)
 
+
 def handle_client(conn, addr, request):
     # Check if the database and collection exists
     database = request['database']
-    train_collection = request['train_collection']
-    test_collection = request['test_collection']
     if database not in db_client.list_database_names():
         response = {'response_type': 'error', 'message': 'Requested database does not exist'}
         unexpected_response(conn, response)
         return
 
     db = db_client[database]
-    if train_collection not in db.list_collection_names():
-        response = {'response_type': 'error', 'message': 'Requested train collection does not exist'}
-        unexpected_response(conn, response)
-        return
-    
-    train_collection = db[train_collection]
-
-    if test_collection not in db.list_collection_names():
-        response = {'response_type': 'error', 'message': 'Requested test collection does not exist'}
-        unexpected_response(conn, response)
-        return
-    
-    test_collection = db[test_collection]
-
     # Perform operations based on the request type
-    if request['request_type'] == 'predict':
+    if request['request_type'] == 'machine_learning':
+        train_collection = request['train_collection']
+        test_collection = request['test_collection']
+        if train_collection not in db.list_collection_names():
+            response = {'response_type': 'error', 'message': 'Requested train collection does not exist'}
+            unexpected_response(conn, response)
+            return
+
+        if test_collection not in db.list_collection_names():
+            response = {'response_type': 'error', 'message': 'Requested test collection does not exist'}
+            unexpected_response(conn, response)
+            return
+
+        train_collection = db[train_collection]
+        test_collection = db[test_collection]
+
         try:
             # User-defined request details
             preprocessing_methods = request['preprocessing_methods']
@@ -99,6 +99,8 @@ def handle_client(conn, addr, request):
         except Exception as e:
             response = {'response_type': 'error', 'message': str(e)}
 
+    elif request['request_type'] == 'mongodb_operation':
+
     elif request['request_type'] == 'custom_operation':
         try:
             # Perform custom operations based on the request
@@ -117,7 +119,7 @@ def handle_client(conn, addr, request):
     # heatmap_fig = heatmap(predict_train_y, train_y)
     # conn.sendall(pickle.dumps(heatmap_fig))
     # print("send picture 1 successfully")
-    
+
     # block the server from consecutive sending two pictures
     barchart_fig = barChart(predictions)
     conn.sendall(pickle.dumps(barchart_fig))
