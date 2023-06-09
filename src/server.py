@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from preprocess import preprocess_data
-from chart import heatmap, barChart, missingMap, numeric_feature_barchart
+from chart import *
 import numpy as np
 import pandas as pd
 import argparse
@@ -129,8 +129,8 @@ def handle_client(conn, addr, request):
             print("send picture missing values successfully")
 
         if 'show_feature_distributions' in request['data_exploration']:
-            numeric_feature_barchart_fig = numeric_feature_barchart(data, data.columns)
-            conn.sendall(pickle.dumps(numeric_feature_barchart_fig))
+            numeric_feature_boxchart_fig = numeric_feature_boxchart(data)
+            conn.sendall(pickle.dumps(numeric_feature_boxchart_fig))
             print("send picture feature distributions successfully")
 
         # Close the connection

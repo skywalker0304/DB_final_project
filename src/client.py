@@ -10,11 +10,13 @@ ip_addr = input("Enter the ip address you want to connect: ")
 port = int(input("Enter the port you want to connect: "))
 
 # Connect to the server
-try:
-    client_socket.connect((ip_addr, port))
-    print(f"Connected to server {ip_addr} on {port} port")
-except:
-    print(f"Connection to {ip_addr} on {port} port is refused")
+while True:
+    try:
+        client_socket.connect((ip_addr, port))
+        print(f"Connected to server {ip_addr} on {port} port")
+        break
+    except:
+        print(f"Connection to {ip_addr} on {port} port is refused")
 
 # Show picture
 def image_receive(num):

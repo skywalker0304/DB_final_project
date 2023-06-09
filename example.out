@@ -1,0 +1,983 @@
+Current Mongosh Log ID:	6482cd4557b2a02d0ae69686
+Connecting to:		mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.9.1
+Using MongoDB:		6.0.6
+Using Mongosh:		1.9.1
+
+For mongosh info see: [1mhttps://docs.mongodb.com/mongodb-shell/[0m
+
+------
+   The server generated these startup warnings when booting
+   2023-06-09T11:02:39.186+08:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2023-06-09T11:02:39.518+08:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2023-06-09T11:02:39.519+08:00: vm.max_map_count is too low
+------
+
+test> switched to db ML_final
+ML_final> [
+  {
+    _id: ObjectId("647f1833ce29236d90cd78e4"),
+    Danceability: 0,
+    Energy: 0.0002733594,
+    Key: 3,
+    Loudness: -25.176,
+    Speechiness: 0.0443,
+    Acousticness: 0.724150792,
+    Instrumentalness: 0.0000619,
+    Liveness: 0.0008069545,
+    Valence: 0.34,
+    Tempo: 83.398,
+    Duration_ms: 117907,
+    Views: null,
+    Likes: 137622,
+    Stream: 19981370,
+    Album_type: 'album',
+    Licensed: false,
+    official_video: false,
+    id: 0,
+    Track: null,
+    Album: 'Sinkovsky Plays and Sings Vivaldi',
+    Uri: 'spotify:track:7njAZhca4o80qQdCgyEWya',
+    Url_spotify: 'https://open.spotify.com/artist/2QOIawHpSlOwXDvSqQ9YJR',
+    Url_youtube: 'https://www.youtube.com/watch?v=NzCL9uLkQSI',
+    Comments: 3070,
+    Description: `Antonio Vivaldi's 4th Concerto - From his Most Famous Work and Masterpiece, The Four Seasons,  " Le Quattro Stagioni " - Winter or " L'inverno".\r\n` +
+      "Although out-famed by the First 3 Concertos, this Piece expresses Unmeasurable Beauty and Passion along with the Power and Style of Vivaldi's Baroque Strings.\r\n" +
+      '\r\n' +
+      'Concerto No. 4 in F minor, Op. 8, RV 297,\r\n' +
+      ` "L'inverno" (Winter) \r\n` +
+      'Allegro non molto\r\n' +
+      '\r\n' +
+      'By : Teatro La Fenice Orchestra\r\n' +
+      '\r\n' +
+      'This was Voted by my friends in a Poll of which season should i upload,\r\n' +
+      'this Concerto Movement Collected a Total of 56 Votes Compared to\r\n' +
+      ' 31 for Spring " La Primavera "\r\n' +
+      ' 12 for Autumn " Le Autunno "\r\n' +
+      ` 5 for Summer " L'estate "\r\n` +
+      '\r\n' +
+      'Hope You Enjoy =]',
+    Title: `Antonio Vivaldi - Concerto No.4 in F minor, Op.8, RV 297, " L'inverno ", Allegro Non Molto`,
+    Channel: 'Mozafunkula',
+    Composer: null,
+    Artist: 'Marshmello'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78e5"),
+    Danceability: 0,
+    Energy: 0.184220009,
+    Key: 7,
+    Loudness: null,
+    Speechiness: null,
+    Acousticness: 0.672221376,
+    Instrumentalness: 0.91,
+    Liveness: 0.034965783,
+    Valence: 0.746,
+    Tempo: 148.692,
+    Duration_ms: 173427,
+    Views: 184825,
+    Likes: 5190,
+    Stream: null,
+    Album_type: null,
+    Licensed: false,
+    official_video: null,
+    id: 1,
+    Track: 'Vivaldi: The Four Seasons, Violin Concerto in G Minor, Op. 8 No. 2, RV 315 "Summer": III. Presto',
+    Album: null,
+    Uri: 'spotify:track:2nnXe7n3Vivs7OfQKRsfWD',
+    Url_spotify: 'https://open.spotify.com/artist/2QOIawHpSlOwXDvSqQ9YJR',
+    Url_youtube: 'https://www.youtube.com/watch?v=jAnzlpPuIDU',
+    Comments: 122,
+    Description: `A. Vivaldi Concerto No. 2 in G minor, RV 315, "L'estate" (Summer) - Presto\n` +
+      '\n' +
+      'Chamber orchestra "Antonio-Orchestra"\n' +
+      'Conductor Anton Paisov\n' +
+      '\n' +
+      'Soloist - Dennis Gasanov (violin)\n' +
+      '\n' +
+      "Stt. Peter-and-Paul's Cathedral. Moscow, Russia\n" +
+      '\n' +
+      'http://antonpaisov.com/',
+    Title: `A. Vivaldi Concerto No. 2 in G minor, RV 315, "L'estate" (Summer) - Presto`,
+    Channel: 'Anton Paisov',
+    Composer: "Finneas O'Connell",
+    Artist: 'Bon Iver'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78e6"),
+    Danceability: 0,
+    Energy: null,
+    Key: 6,
+    Loudness: -15.596,
+    Speechiness: null,
+    Acousticness: 0.667627624,
+    Instrumentalness: 0.867,
+    Liveness: 0.001771561,
+    Valence: 0.38,
+    Tempo: 84.899,
+    Duration_ms: 150667,
+    Views: 184825,
+    Likes: 5190,
+    Stream: 19320810,
+    Album_type: null,
+    Licensed: false,
+    official_video: false,
+    id: 2,
+    Track: `The Four Seasons, Violin Concerto No. 2 in G Minor, RV 315 "L'estate": III. Tempo impetuoso d'estate`,
+    Album: 'Vivaldi: The Four Seasons',
+    Uri: 'spotify:track:0VQMAup2VdeQWLCvM14Uz2',
+    Url_spotify: 'https://open.spotify.com/artist/2QOIawHpSlOwXDvSqQ9YJR',
+    Url_youtube: 'https://www.youtube.com/watch?v=jAnzlpPuIDU',
+    Comments: 122,
+    Description: `A. Vivaldi Concerto No. 2 in G minor, RV 315, "L'estate" (Summer) - Presto\n` +
+      '\n' +
+      'Chamber orchestra "Antonio-Orchestra"\n' +
+      'Conductor Anton Paisov\n' +
+      '\n' +
+      'Soloist - Dennis Gasanov (violin)\n' +
+      '\n' +
+      "Stt. Peter-and-Paul's Cathedral. Moscow, Russia\n" +
+      '\n' +
+      'http://antonpaisov.com/',
+    Title: null,
+    Channel: 'Anton Paisov',
+    Composer: "Finneas O'Connell",
+    Artist: 'Kamasi Washington'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78e7"),
+    Danceability: 1,
+    Energy: 0.209584584,
+    Key: null,
+    Loudness: -6.251,
+    Speechiness: 0.0277,
+    Acousticness: 0.003796416,
+    Instrumentalness: null,
+    Liveness: 0.001,
+    Valence: null,
+    Tempo: 150.22,
+    Duration_ms: 265000,
+    Views: 202457327,
+    Likes: 997035,
+    Stream: 399661898,
+    Album_type: 'album',
+    Licensed: true,
+    official_video: null,
+    id: 3,
+    Track: 'Angels',
+    Album: 'Life Thru A Lens',
+    Uri: 'spotify:track:1M2nd8jNUkkwrc1dgBPTJz',
+    Url_spotify: 'https://open.spotify.com/artist/2HcwFjNelS49kFbfvMxQYw',
+    Url_youtube: 'https://www.youtube.com/watch?v=luwAMFcc2f8',
+    Comments: 24350,
+    Description: '25 years of Life Thru A Lens. Pre-order the brand new 25th anniversary editions of the debut album now: http://robbiewilliams.link/XXVLTAL\n' +
+      ' \n' +
+      'Follow Robbie online:\n' +
+      'Sign up: http://RobbieWilliams.lnk.to/signup\n' +
+      'YouTube: http://RobbieWilliams.lnk.to/Watch\n' +
+      'Instagram: http://RobbieWilliams.lnk.to/Instagram\n' +
+      'Twitter: http://RobbieWilliams.lnk.to/Twitter\n' +
+      'Facebook: https://RobbieWilliams.lnk.to/Facebook\n' +
+      ' \n' +
+      'Listen to more from Robbie: http://RobbieWilliams.lnk.to/ListenNow',
+    Title: 'Robbie Williams - Angels',
+    Channel: 'robbiewilliamsvevo',
+    Composer: 'Louis Bell',
+    Artist: 'Drake'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78e8"),
+    Danceability: 4,
+    Energy: null,
+    Key: 5,
+    Loudness: null,
+    Speechiness: 0.026,
+    Acousticness: 0.0000030486,
+    Instrumentalness: 0.000467,
+    Liveness: 0.002924207,
+    Valence: 0.295,
+    Tempo: 97.997,
+    Duration_ms: 263867,
+    Views: 316688049,
+    Likes: 1299086,
+    Stream: null,
+    Album_type: 'album',
+    Licensed: true,
+    official_video: true,
+    id: 4,
+    Track: 'Feel',
+    Album: 'Escapology',
+    Uri: 'spotify:track:2Ms33RTRCT6gArrpcrPxmo',
+    Url_spotify: 'https://open.spotify.com/artist/2HcwFjNelS49kFbfvMxQYw',
+    Url_youtube: 'https://www.youtube.com/watch?v=iy4mXZN1Zzk',
+    Comments: 31150,
+    Description: '25 years of Life Thru A Lens. Pre-order the brand new 25th anniversary editions of the debut album now: http://robbiewilliams.link/XXVLTAL\n' +
+      ' \n' +
+      'Follow Robbie online:\n' +
+      'Sign up: http://RobbieWilliams.lnk.to/signup\n' +
+      'YouTube: http://RobbieWilliams.lnk.to/Watch\n' +
+      'Instagram: http://RobbieWilliams.lnk.to/Instagram\n' +
+      'Twitter: http://RobbieWilliams.lnk.to/Twitter\n' +
+      'Facebook: https://RobbieWilliams.lnk.to/Facebook\n' +
+      ' \n' +
+      'Listen to more from Robbie: http://RobbieWilliams.lnk.to/ListenNow',
+    Title: 'Robbie Williams - Feel',
+    Channel: 'robbiewilliamsvevo',
+    Composer: 'Juicy J',
+    Artist: 'Alicia Keys'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78e9"),
+    Danceability: 6,
+    Energy: 0.442450728,
+    Key: 7,
+    Loudness: null,
+    Speechiness: 0.0326,
+    Acousticness: 0.000017576,
+    Instrumentalness: 0,
+    Liveness: 0.0009440761,
+    Valence: 0.842,
+    Tempo: 103.032,
+    Duration_ms: 260560,
+    Views: 249074,
+    Likes: 922,
+    Stream: 201457474,
+    Album_type: 'album',
+    Licensed: null,
+    official_video: false,
+    id: 5,
+    Track: 'Rock DJ',
+    Album: "Sing When You're Winning",
+    Uri: null,
+    Url_spotify: 'https://open.spotify.com/artist/2HcwFjNelS49kFbfvMxQYw',
+    Url_youtube: null,
+    Comments: 140,
+    Description: 'Lyrics:\n' +
+      '\n' +
+      'Me with the floorshow\n' +
+      "Kickin' with your torso\n" +
+      'Boys getting high\n' +
+      'And the girls even more so\n' +
+      'Wave your hands if your not with the man\n' +
+      'Can I kick it?\n' +
+      '(Yes you can)\n' +
+      'I got\n' +
+      '(Funk)\n' +
+      'You got\n' +
+      '(Soul)\n' +
+      'We got everybody\n' +
+      "I've got the gift\n" +
+      'Gonna stick it in the goal\n' +
+      "It's time to move your body\n" +
+      '\n' +
+      'Babylon back in business\n' +
+      'Can I get a witness?\n' +
+      'Every girl, every man\n' +
+      'Houston, do you hear me?\n' +
+      'Ground control, can you feel me?\n' +
+      'Need permission to land\n' +
+      "I don't wanna rock, DJ\n" +
+      'But your making me feel so nice\n' +
+      "When's it gonna stop, DJ?\n" +
+      "Cos you're keepin' me up all night\n" +
+      '\n' +
+      "Singin' in the classes\n" +
+      'Music for your masses\n' +
+      'Give no head\n' +
+      'No backstage passes\n' +
+      'Have a proper giggle\n' +
+      "I'll be quite polite\n" +
+      'But when I rock the mic\n' +
+      'I rock the mic\n' +
+      '(Right)\n' +
+      "You got no love, then you're with the wrong man\n" +
+      "It's time to move your body\n" +
+      "If you can't get a girl\n" +
+      'But your best friend can\n' +
+      "It's time to move your body\n" +
+      '\n' +
+      "I don't wanna be sleazy\n" +
+      'Baby just tease me\n' +
+      'Got no family planned\n' +
+      'Houston, do you hear me?\n' +
+      'Ground control, can you feel me?\n' +
+      'Need permission to land\n' +
+      "I don't wanna rock DJ\n" +
+      "But you're making me feel so nice\n" +
+      "When's it gonna stop, DJ?\n" +
+      "Cos you're keeping me up all night\n" +
+      '\n' +
+      "I don't wanna rock, DJ\n" +
+      "But you're making me feel so nice\n" +
+      "When's it gonna stop, DJ?\n" +
+      'Cos your keeping me up all night\n' +
+      '\n' +
+      "Pimpin' aint easy\n" +
+      'Most of them fleece me\n' +
+      'Every night\n' +
+      "Pimpin' ain't easy\n" +
+      "But if you're sellin' it\n" +
+      "It's alright\n" +
+      '\n' +
+      'Come on\n' +
+      '\n' +
+      "I don't wanna rock, DJ\n" +
+      "But you're making me feel so nice\n" +
+      "When's it gonna stop, DJ?\n" +
+      "Cos you're keeping me up all night\n" +
+      '\n' +
+      "I don't wanna rock, DJ\n" +
+      "But you're making me feel so nice\n" +
+      "When's it gonna stop, DJ?\n" +
+      "Cos you're keeping me up all night",
+    Title: 'Robbie Williams - Rock DJ (Official Music Video)',
+    Channel: 'RobbieWilliamsLove',
+    Composer: 'Noah "40" Shebib',
+    Artist: 'Major Lazer'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78ea"),
+    Danceability: 0,
+    Energy: 0.225866529,
+    Key: 10,
+    Loudness: null,
+    Speechiness: 0.0323,
+    Acousticness: 0.291434247,
+    Instrumentalness: 0.0000113,
+    Liveness: 0.010793861,
+    Valence: null,
+    Tempo: 166.668,
+    Duration_ms: 258027,
+    Views: 76758188,
+    Likes: 252380,
+    Stream: 136332369,
+    Album_type: 'album',
+    Licensed: true,
+    official_video: true,
+    id: 6,
+    Track: null,
+    Album: "I've Been Expecting You",
+    Uri: 'spotify:track:4lO57zZGFcj7vSY4QhfVDq',
+    Url_spotify: 'https://open.spotify.com/artist/2HcwFjNelS49kFbfvMxQYw',
+    Url_youtube: 'https://www.youtube.com/watch?v=sVaRHJn_dgM',
+    Comments: 6860,
+    Description: 'Pre-order new album Swings Both Ways now: iTunes http://po.st/SBWYT | Amazon http://po.st/SBWAmYT \n' +
+      '\n' +
+      'http://www.robbiewilliams.com\n' +
+      '\n' +
+      'Follow Robbie:\n' +
+      'http://www.facebook.com/robbiewilliams \n' +
+      'http://www.twitter.com/robbiewilliams \n' +
+      'http://mind.robbiewilliams.com/',
+    Title: "Robbie Williams - She's The One",
+    Channel: 'robbiewilliamsvevo',
+    Composer: "Finneas O'Connell",
+    Artist: 'J. Cole'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78eb"),
+    Danceability: 6,
+    Energy: 0.494913671,
+    Key: 10,
+    Loudness: -6.63,
+    Speechiness: 0.0414,
+    Acousticness: 0.000049836,
+    Instrumentalness: 0,
+    Liveness: 0.0003342554,
+    Valence: 0.879,
+    Tempo: 116.043,
+    Duration_ms: null,
+    Views: 105107732,
+    Likes: 740856,
+    Stream: 140211873,
+    Album_type: 'album',
+    Licensed: true,
+    official_video: true,
+    id: 7,
+    Track: 'Candy',
+    Album: 'Take The Crown (Deluxe Edition)',
+    Uri: 'spotify:track:5NlFXQ0si6U87gXs6hq81B',
+    Url_spotify: 'https://open.spotify.com/artist/2HcwFjNelS49kFbfvMxQYw',
+    Url_youtube: 'https://www.youtube.com/watch?v=gtOV7bp-gys',
+    Comments: 43300,
+    Description: null,
+    Title: 'Robbie Williams - Candy',
+    Channel: 'robbiewilliamsvevo',
+    Composer: 'Noah "40" Shebib',
+    Artist: 'Flume'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78ec"),
+    Danceability: 1,
+    Energy: 0.898632125,
+    Key: 10,
+    Loudness: -5.022,
+    Speechiness: null,
+    Acousticness: 0,
+    Instrumentalness: null,
+    Liveness: 0.0006228359,
+    Valence: 0.347,
+    Tempo: 125.152,
+    Duration_ms: 262000,
+    Views: 22878351,
+    Likes: 93766,
+    Stream: 128201040,
+    Album_type: 'album',
+    Licensed: null,
+    official_video: true,
+    id: 8,
+    Track: 'Let Me Entertain You',
+    Album: 'Life Thru A Lens',
+    Uri: 'spotify:track:0SLtqCrXBRrnkxSOMA3X4W',
+    Url_spotify: 'https://open.spotify.com/artist/2HcwFjNelS49kFbfvMxQYw',
+    Url_youtube: 'https://www.youtube.com/watch?v=ymPu2PdLW3I',
+    Comments: 3668,
+    Description: null,
+    Title: 'Robbie Williams - Let Me Entertain You',
+    Channel: 'robbiewilliamsvevo',
+    Composer: "Finneas O'Connell",
+    Artist: 'Tame Impala'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78ed"),
+    Danceability: 5,
+    Energy: null,
+    Key: null,
+    Loudness: null,
+    Speechiness: 0.0261,
+    Acousticness: 0.078953589,
+    Instrumentalness: null,
+    Liveness: 0.005268024,
+    Valence: 0.677,
+    Tempo: 106.191,
+    Duration_ms: 170493,
+    Views: 44458549,
+    Likes: 276258,
+    Stream: 105775598,
+    Album_type: 'album',
+    Licensed: true,
+    official_video: true,
+    id: 9,
+    Track: "Somethin' Stupid",
+    Album: "Swing When You're Winning",
+    Uri: null,
+    Url_spotify: null,
+    Url_youtube: 'https://www.youtube.com/watch?v=f43nR8Wu_1Y',
+    Comments: 6509,
+    Description: 'Pre-order new album Swings Both Ways now: iTunes http://po.st/SBWYT | Amazon http://po.st/SBWAmYT \n' +
+      '\n' +
+      'http://www.robbiewilliams.com\n' +
+      '\n' +
+      'Follow Robbie:\n' +
+      'http://www.facebook.com/robbiewilliams \n' +
+      'http://www.twitter.com/robbiewilliams \n' +
+      'http://mind.robbiewilliams.com/',
+    Title: "Robbie Williams, Nicole Kidman - Somethin' Stupid",
+    Channel: 'robbiewilliamsvevo',
+    Composer: 'Louis Bell',
+    Artist: null
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78ee"),
+    Danceability: 1,
+    Energy: 0.354894912,
+    Key: 1,
+    Loudness: null,
+    Speechiness: 0.0301,
+    Acousticness: 0.0000510648,
+    Instrumentalness: 0,
+    Liveness: 0.0009880479,
+    Valence: 0.612,
+    Tempo: 164.001,
+    Duration_ms: 203438,
+    Views: 2419753,
+    Likes: null,
+    Stream: 15191393,
+    Album_type: 'album',
+    Licensed: null,
+    official_video: null,
+    id: 10,
+    Track: null,
+    Album: 'The Christmas Present (Deluxe)',
+    Uri: 'spotify:track:7jBePLCZlKuEUc3rSc6izU',
+    Url_spotify: null,
+    Url_youtube: 'https://www.youtube.com/watch?v=X4BTaYbsX-s',
+    Comments: 1861,
+    Description: 'Stream / Download: https://www.robbiewilliams.com\n' +
+      '–\n' +
+      'Connect with Robbie Williams\n' +
+      'Official Robbie Williams App – https://RobbieWilliams.lnk.to/appID\n' +
+      'Website – https://RobbieWilliams.com\n' +
+      'Sign up to the newsletter – https://RobbieWilliams.lnk.to/signupID\n' +
+      'Apple Music – https://RobbieWilliams.lnk.to/AppleMusicID\n' +
+      'Spotify – https://RobbieWilliams.lnk.to/SpotifyID\n' +
+      'Facebook – https://www.facebook.com/robbiewilliams\n' +
+      'Instagram – https://www.instagram.com/robbiewilliams/\n' +
+      'Twitter – https://twitter.com/robbiewilliams',
+    Title: "Robbie Williams - Can't Stop Christmas (Official Video)",
+    Channel: null,
+    Composer: 'Juicy J',
+    Artist: 'Alicia Keys'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78ef"),
+    Danceability: 3,
+    Energy: 0.629422793,
+    Key: 5,
+    Loudness: -5.173,
+    Speechiness: 0.0589,
+    Acousticness: 2.78e-8,
+    Instrumentalness: 0.00000223,
+    Liveness: 0.022906304,
+    Valence: 0.759,
+    Tempo: 96.231,
+    Duration_ms: 260400,
+    Views: 86252134,
+    Likes: 357275,
+    Stream: 53372857,
+    Album_type: 'album',
+    Licensed: true,
+    official_video: true,
+    id: 11,
+    Track: 'Supreme',
+    Album: "Sing When You're Winning",
+    Uri: 'spotify:track:4dZ3V71vsqSn9MJ18y8YaJ',
+    Url_spotify: 'https://open.spotify.com/artist/2HcwFjNelS49kFbfvMxQYw',
+    Url_youtube: null,
+    Comments: 9334,
+    Description: null,
+    Title: 'Robbie Williams - Supreme',
+    Channel: null,
+    Composer: 'Louis Bell',
+    Artist: null
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78f0"),
+    Danceability: 2,
+    Energy: 0.144703125,
+    Key: 6,
+    Loudness: -7.31,
+    Speechiness: 0.0341,
+    Acousticness: 0.005088448,
+    Instrumentalness: 0,
+    Liveness: 0.002406104,
+    Valence: 0.291,
+    Tempo: 156.207,
+    Duration_ms: 204640,
+    Views: 26341526,
+    Likes: 83668,
+    Stream: 45956641,
+    Album_type: 'album',
+    Licensed: false,
+    official_video: false,
+    id: 12,
+    Track: 'Better Man',
+    Album: "Sing When You're Winning",
+    Uri: 'spotify:track:6yM5jM2eAq3k8NojZ7dLp1',
+    Url_spotify: 'https://open.spotify.com/artist/2HcwFjNelS49kFbfvMxQYw',
+    Url_youtube: 'https://www.youtube.com/watch?v=gY2ekm_krNU',
+    Comments: 2923,
+    Description: 'Tribute to Robbie Williams:\n' +
+      'The Man\n' +
+      'The Musician\n' +
+      '\n' +
+      'Music: Robbie Williams - Better Man',
+    Title: 'Robbie Williams - Better Man',
+    Channel: 'Mies10',
+    Composer: 'Louis Bell',
+    Artist: 'Chance the Rapper'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78f1"),
+    Danceability: 0,
+    Energy: 0.006539203,
+    Key: 2,
+    Loudness: null,
+    Speechiness: null,
+    Acousticness: 0.967361669,
+    Instrumentalness: null,
+    Liveness: 0.001030301,
+    Valence: 0.213,
+    Tempo: 132.731,
+    Duration_ms: null,
+    Views: 88490455,
+    Likes: 1939359,
+    Stream: 427523589,
+    Album_type: 'single',
+    Licensed: null,
+    official_video: true,
+    id: 13,
+    Track: 'Je te laisserai des mots',
+    Album: 'Je te laisserai des mots',
+    Uri: 'spotify:track:0V5cvmTKsYmF5FmGGEAfmS',
+    Url_spotify: 'https://open.spotify.com/artist/7bPs6jf983f0bjRAt1yxDM',
+    Url_youtube: 'https://www.youtube.com/watch?v=mcdO9UP0hp8',
+    Comments: 3259,
+    Description: 'Provided to YouTube by Secret City Records Inc.\n' +
+      '\n' +
+      'Je te laisserai des mots · Patrick Watson\n' +
+      '\n' +
+      'Je te laisserai des mots\n' +
+      '\n' +
+      '℗ 2010 Secret City Records, Inc.\n' +
+      '\n' +
+      'Released on: 2010-09-10\n' +
+      '\n' +
+      'Composer: Patrick Watson\n' +
+      'Lyricist: Patrick Watson\n' +
+      'Music Publisher: Secret City Publishing, Inc.\n' +
+      '\n' +
+      'Auto-generated by YouTube.',
+    Title: 'Je te laisserai des mots',
+    Channel: 'Patrick Watson - Topic',
+    Composer: "Finneas O'Connell",
+    Artist: 'Kanye West'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78f2"),
+    Danceability: 1,
+    Energy: 0.000012167,
+    Key: 0,
+    Loudness: -29.372,
+    Speechiness: 0.0364,
+    Acousticness: 0.921167317,
+    Instrumentalness: 0.915,
+    Liveness: null,
+    Valence: 0.226,
+    Tempo: 132.813,
+    Duration_ms: 96625,
+    Views: 86950,
+    Likes: 955,
+    Stream: 5016602,
+    Album_type: 'single',
+    Licensed: true,
+    official_video: true,
+    id: 14,
+    Track: 'Ode to Vivian - Rework',
+    Album: null,
+    Uri: 'spotify:track:18oB9NlhCMSzlte5KAj5tl',
+    Url_spotify: 'https://open.spotify.com/artist/7bPs6jf983f0bjRAt1yxDM',
+    Url_youtube: null,
+    Comments: 7,
+    Description: 'Provided to YouTube by Secret City Records Inc.\n' +
+      '\n' +
+      'Ode to Vivian (Rework) · Patrick Watson\n' +
+      '\n' +
+      'Ode to Vivian\n' +
+      '\n' +
+      '℗ 2022 Watsonia Productions Inc. under exclusive license to Secret City Records Inc.\n' +
+      '\n' +
+      'Released on: 2022-10-25\n' +
+      '\n' +
+      'Mixer, Producer: Patrick Watson\n' +
+      'Composer, Lyricist: Patrick Watson\n' +
+      'Music  Publisher: Secret City Publishing Inc.\n' +
+      '\n' +
+      'Auto-generated by YouTube.',
+    Title: 'Ode to Vivian (Rework)',
+    Channel: 'Patrick Watson - Topic',
+    Composer: 'Mike Dean',
+    Artist: 'Bon Iver'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78f3"),
+    Danceability: 2,
+    Energy: 0.003375,
+    Key: null,
+    Loudness: -22.415,
+    Speechiness: 0.0355,
+    Acousticness: 0.944076141,
+    Instrumentalness: 0.94,
+    Liveness: 0.001860867,
+    Valence: null,
+    Tempo: 134.311,
+    Duration_ms: 89601,
+    Views: 86950,
+    Likes: 955,
+    Stream: 8273038,
+    Album_type: 'album',
+    Licensed: true,
+    official_video: true,
+    id: 15,
+    Track: 'Ode to Vivian',
+    Album: 'Better in the Shade',
+    Uri: 'spotify:track:5fqYqPWlfQhIkcUY3XAJlm',
+    Url_spotify: 'https://open.spotify.com/artist/7bPs6jf983f0bjRAt1yxDM',
+    Url_youtube: 'https://www.youtube.com/watch?v=lcuMwAt3MjI',
+    Comments: 7,
+    Description: 'Provided to YouTube by Secret City Records Inc.\n' +
+      '\n' +
+      'Ode to Vivian (Rework) · Patrick Watson\n' +
+      '\n' +
+      'Ode to Vivian\n' +
+      '\n' +
+      '℗ 2022 Watsonia Productions Inc. under exclusive license to Secret City Records Inc.\n' +
+      '\n' +
+      'Released on: 2022-10-25\n' +
+      '\n' +
+      'Mixer, Producer: Patrick Watson\n' +
+      'Composer, Lyricist: Patrick Watson\n' +
+      'Music  Publisher: Secret City Publishing Inc.\n' +
+      '\n' +
+      'Auto-generated by YouTube.',
+    Title: 'Ode to Vivian (Rework)',
+    Channel: 'Patrick Watson - Topic',
+    Composer: 'Louis Bell',
+    Artist: 'deadmau5'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78f4"),
+    Danceability: 0,
+    Energy: 0.003869893,
+    Key: 4,
+    Loudness: -16.714,
+    Speechiness: 0.0331,
+    Acousticness: 0.941192,
+    Instrumentalness: 0.0103,
+    Liveness: 0.0005863763,
+    Valence: 0.319,
+    Tempo: 77.483,
+    Duration_ms: 175644,
+    Views: 2273744,
+    Likes: null,
+    Stream: 26635618,
+    Album_type: null,
+    Licensed: true,
+    official_video: true,
+    id: 16,
+    Track: 'Lost With You',
+    Album: null,
+    Uri: null,
+    Url_spotify: 'https://open.spotify.com/artist/7bPs6jf983f0bjRAt1yxDM',
+    Url_youtube: 'https://www.youtube.com/watch?v=EwqNIMlmkzs',
+    Comments: 1275,
+    Description: 'Subscribe to Patrick Watson on Youtube: https://bit.ly/Patrick-Yt \n' +
+      "Listen / Save ' Lost With You ' here : https://found.ee/PW_LWY\n" +
+      '\n' +
+      'Directed by Patrick Watson\n' +
+      'Co-directed by Arizona O’Neill\n' +
+      'Post-production by Studio Mels\n' +
+      'Colorization by Jérôme Cloutier \n' +
+      '\n' +
+      '[Lyrics]\n' +
+      'The loves were playing in the yard\n' +
+      'Giving goosebumps to all the Sunday summer trees\n' +
+      'Our hands were tangled in the weeds\n' +
+      'Moving so softly, nobody can see\n' +
+      'Against your morning skin\n' +
+      "Well, it's shy like two young lovers walking by\n" +
+      "There's a soft strange kind of art\n" +
+      'Giving company to all the lonely hearts\n' +
+      '\n' +
+      "There's a hundred cigarettes on the ground\n" +
+      'And our clothes are still hanging around\n' +
+      "And it's nice to be ugly in each other's arms\n" +
+      'So we can grow over all the things we were before\n' +
+      '\n' +
+      'Follow Patrick: \n' +
+      'Instagram: https://www.instagram.com/patrickwatsonofficial/\n' +
+      'Twitter: https://twitter.com/patrickwatson\n' +
+      'Facebook: https://www.facebook.com/patrickwatsonofficial\n' +
+      'YouTube: https://bit.ly/Patrick-Yt \n' +
+      '\n' +
+      '►Subscribe to Secret City Records on Youtube: https://bit.ly/SCR-Yt1 \n' +
+      'Secret City Records: https://www.secretcityrecords.com \n' +
+      'Instagram: https://www.instagram.com/secretcirtyrecords/​\n' +
+      'Twitter: https://twitter.com/secretcirtyrecords/​\n' +
+      'Facebook: https://www.facebook.com/secretcirtyrecords/​\n' +
+      'TikTok: https://www.tiktok.com/@secretcirtyrecords\n' +
+      '\n' +
+      '\n' +
+      '#PatrickWatson #LostWithYou #SecretCityRecords #2020',
+    Title: 'Patrick Watson - Lost With You (Official Video)',
+    Channel: null,
+    Composer: 'Juicy J',
+    Artist: 'Rihanna'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78f5"),
+    Danceability: 1,
+    Energy: 0.0003400684,
+    Key: 6,
+    Loudness: -16.827,
+    Speechiness: null,
+    Acousticness: 0.973242271,
+    Instrumentalness: 0.103,
+    Liveness: 0.001295029,
+    Valence: 0.232,
+    Tempo: 105.202,
+    Duration_ms: 187373,
+    Views: 9236037,
+    Likes: 62809,
+    Stream: 29325998,
+    Album_type: 'album',
+    Licensed: true,
+    official_video: true,
+    id: 17,
+    Track: 'The Great Escape',
+    Album: 'Close to Paradise',
+    Uri: 'spotify:track:1GIPP103zfsythULEpsmdw',
+    Url_spotify: 'https://open.spotify.com/artist/7bPs6jf983f0bjRAt1yxDM',
+    Url_youtube: 'https://www.youtube.com/watch?v=YA2h9PrIUxs',
+    Comments: 2114,
+    Description: 'Subscribe to Patrick Watson on Youtube: https://bit.ly/Patrick-Yt \n' +
+      'Close to Paradise out now! Listen here: http://smarturl.it/PWctp\n' +
+      '\n' +
+      'Official video for "The Great Escape" by Patrick Watson from the album Close to Paradise (2006, Secret City Records).\n' +
+      '\n' +
+      '[lyrics]\n' +
+      'Bad day, looking for a way home,\n' +
+      'looking for the great escape.\n' +
+      'Gets in his car and drives away,\n' +
+      'far from all the things that we are.\n' +
+      'Puts on a smile and breathes it in\n' +
+      'and breathes it out, he says,\n' +
+      'bye bye bye to all of the noise.\n' +
+      'Oh, he says, bye bye bye to all of the noise.\n' +
+      '\n' +
+      'Doo doo doo doo doo noo noo\n' +
+      'Doo doo doo doo doo noo noo noo noo\n' +
+      'Doo doo doo doo doo doo doo\n' +
+      'Doo doo doo doo doo doo noo noo noo\n' +
+      '\n' +
+      'Hey child, things are looking down.\n' +
+      "That's okay, you don't need to win anyways.\n" +
+      "Don't be afraid, just eat up all the gray\n" +
+      'and it will fade all away.\n' +
+      "Don't let yourself fall down.\n" +
+      '\n' +
+      'Doo doo doo doo doo noo noo\n' +
+      'Doo doo doo doo doo noo noo noo noo\n' +
+      'Doo doo doo doo doo doo doo\n' +
+      'Doo doo doo doo doo doo noo noo noo\n' +
+      '\n' +
+      'Bad day, looking for the great escape.\n' +
+      'He says, bad day, looking for the great escape.\n' +
+      'On a bad day, looking for the great escape,\n' +
+      'the great escape.\n' +
+      '\n' +
+      'Illustrated, animated and directed by Alex Produkt and Kathleen Weldon. Copyright 2007, Secret City Records. \n' +
+      '\n' +
+      '►Follow Patrick: \n' +
+      'Instagram: https://www.instagram.com/patrickwats...\n' +
+      'Twitter: https://twitter.com/patrickwatson\n' +
+      'Facebook: https://www.facebook.com/patrickwatso...\n' +
+      'YouTube: https://bit.ly/Patrick-Yt \n' +
+      '\n' +
+      '►Subscribe to Secret City Records on Youtube: https://bit.ly/SCR-Yt1 \n' +
+      'Secret City Records: https://www.secretcityrecords.com \n' +
+      'Instagram: https://www.instagram.com/secretcirty...\n' +
+      'Twitter: https://twitter.com/secretcirtyrecords/​\n' +
+      'Facebook: https://www.facebook.com/secretcirtyr...\n' +
+      'TikTok: https://www.tiktok.com/@secretcirtyre...\n' +
+      '\n' +
+      '🎵 This channel specializes in different artists and genres of music. If you are a fan of Basia Bulat, The Barr Brothers, Leif Vollebekk, Owen Pallett, Alexandra Stréliski, SHAD, Plants and Animals, Jesse Mac Cormack, Klô Pelgag, Rosie Valland and Antoine Corriveau or you are just a music lover, you are now in the right place.\n' +
+      '\n' +
+      '#PatrickWatson #TheGreatEscape #SecretCityRecords',
+    Title: 'Patrick Watson - The Great Escape (Official Video)',
+    Channel: 'Secret City Records',
+    Composer: "Finneas O'Connell",
+    Artist: 'Dua Lipa'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78f6"),
+    Danceability: 0,
+    Energy: 0.036926037,
+    Key: 3,
+    Loudness: -13.012,
+    Speechiness: null,
+    Acousticness: null,
+    Instrumentalness: 0.594,
+    Liveness: 0.020570824,
+    Valence: 0.272,
+    Tempo: 144.553,
+    Duration_ms: 272467,
+    Views: null,
+    Likes: 240853,
+    Stream: 23145970,
+    Album_type: 'single',
+    Licensed: null,
+    official_video: true,
+    id: 18,
+    Track: null,
+    Album: 'Sit Down Beside Me',
+    Uri: 'spotify:track:5sQumEFLTZ7OWMbKg7Pq0J',
+    Url_spotify: 'https://open.spotify.com/artist/7bPs6jf983f0bjRAt1yxDM',
+    Url_youtube: 'https://www.youtube.com/watch?v=zgwdQVHpAR0',
+    Comments: 1141,
+    Description: 'Provided to YouTube by Secret City Records Inc.\n' +
+      '\n' +
+      'Sit Down Beside Me · Patrick Watson\n' +
+      '\n' +
+      'Sit Down Beside Me\n' +
+      '\n' +
+      '℗ 2010 Secret City Records, Inc.\n' +
+      '\n' +
+      'Released on: 2010-05-25\n' +
+      '\n' +
+      'Producer: Patrick Watson\n' +
+      'Composer: Patrick Watson, Mishka Stein, Simon Angell, Robbie Kuster\n' +
+      'Lyricist: Patrick Watson\n' +
+      '\n' +
+      'Auto-generated by YouTube.',
+    Title: 'Sit Down Beside Me',
+    Channel: 'Patrick Watson - Topic',
+    Composer: 'Yeti Beats',
+    Artist: 'The Chainsmokers'
+  },
+  {
+    _id: ObjectId("647f1833ce29236d90cd78f7"),
+    Danceability: 5,
+    Energy: 0.031255875,
+    Key: 6,
+    Loudness: -13.781,
+    Speechiness: 0.0388,
+    Acousticness: 0.616295051,
+    Instrumentalness: 0.000261,
+    Liveness: 0.001860867,
+    Valence: 0.578,
+    Tempo: 125.231,
+    Duration_ms: 194000,
+    Views: 1870898,
+    Likes: 35807,
+    Stream: null,
+    Album_type: 'album',
+    Licensed: true,
+    official_video: true,
+    id: 19,
+    Track: 'Melody Noir',
+    Album: 'Wave',
+    Uri: 'spotify:track:1e1a7eAlICks9mch3UVsEH',
+    Url_spotify: 'https://open.spotify.com/artist/7bPs6jf983f0bjRAt1yxDM',
+    Url_youtube: 'https://www.youtube.com/watch?v=MF-6mBuSGos',
+    Comments: 576,
+    Description: 'Patrick Watson - “Melody Noir”, the new single.\n' +
+      'Get it now: http://smarturl.it/MelodyNoir\n' +
+      '\n' +
+      'Stream & Download “Melody Noir”: http://smarturl.it/MelodyNoir\n' +
+      '\n' +
+      'Directed by Patrick Watson & Brigitte Poupart\n' +
+      'Produced by Olivier Sirois\n' +
+      '\n' +
+      'Follow Patrick Watson: \n' +
+      'YouTube: http://bit.ly/PatrickWatsonYT \n' +
+      'Website: http://bit.ly/PatrickWatsonW \n' +
+      'Facebook:http://bit.ly/PatrickWatsonFacebook \n' +
+      'Twitter: http://bit.ly/PatrickWatsonTW \n' +
+      'Instagram: http://bit.ly/PatrickWatsonIN \n' +
+      ' \n' +
+      'Follow Domino Record Co:\n' +
+      'YouTube: http://smarturl.it/DominoYT\n' +
+      'Website: http://smarturl.it/DominoRecordCo\n' +
+      'Facebook: http://smarturl.it/DominoFB\n' +
+      'Twitter: http://smarturl.it/DominoTW\n' +
+      'Instagram: http://smarturl.it/DominoIN\n' +
+      '\n' +
+      'http://vevo.ly/b0LYD5',
+    Title: null,
+    Channel: null,
+    Composer: 'Louis Bell',
+    Artist: 'Bon Iver'
+  }
+]
+Type "it" for more
+ML_final> 
