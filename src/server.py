@@ -109,19 +109,9 @@ def handle_client(conn, addr, request):
         conn.close()
 
     elif request['request_type'] == 'mongodb_operation':
-
-        '''
-        # Send the response to the client
-        conn.send(pickle.dumps(response))
-
-        # Close the connection
-        print("Close connection")
-        conn.close()
-        '''
-
         user_query = request['db_operation']
         file_path = "tmp.js"
-        js_code = f"use {db};\n{user_query};"
+        js_code = f"use {database};\n{user_query};"
         print(f"content of file: \n{js_code}")
         with open(file_path, "w") as js_file:
             js_file.write(js_code)
