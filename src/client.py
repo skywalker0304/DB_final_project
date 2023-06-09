@@ -10,10 +10,39 @@ ip_addr = input("Enter the ip address you want to connect: ")
 port = int(input("Enter the port you want to connect: "))
 
 # Connect to the server
-client_socket.connect((ip_addr, port))
-print(f"Connected to server {ip_addr} on {port} port")
+try:
+    client_socket.connect((ip_addr, port))
+    print(f"Connected to server {ip_addr} on {port} port")
+except:
+    print(f"Connection to {ip_addr} on {port} port is refused")
+
+# Show picture
+def image_receive(num):
+    
+    for i in range(num):
+        received_data = b""
+        print("waiting for server")
+        while True:
+            data = client_socket.recv(4096)
+            if not data:
+                break
+            received_data += data
+
+        print("received picture, showing picture")
+        received_fig = pickle.loads(received_data)
+        plt.figure(received_fig.number)
+        plt.show()
+        print(f"show {i + 1}th figure at client side")
+
+    # with open(image_path, 'wb') as file:
+    #    file.write(received_data)
+    # image = Image.open(image_path)
+    # plt.imshow(image)
+    # plt.show()
+
 
 while True:
+
     # Get user's request
     db = input("Enter the database you want to use: ")
     user_input = input("Enter your request (machine_learning, mongodb_operation, data_exploration, custom_operation): ")
@@ -64,13 +93,12 @@ while True:
             'preprocessing_methods': preprocessing_methods_list,
             'model': 'lightwood',
             'predict_column': predict_column,
-            'hidden_layers': [32, 32],
-            'epochs': 1,
-            'batch_size': 32
         }
+
     elif user_input == 'mongodb_operation':
         db_operation = input(
-            'Please enter the operation you want to do in mongosh syntax\nex: db.getCollection("data").find({})'
+            'Please enter the operation you want to do in mongosh syntax\n'
+            'ex: db.getCollection("data").find({})\n'
         )
         request = {
             'database': db,
@@ -117,38 +145,22 @@ while True:
     # Process the response
     if response['response_type'] == 'predictions':
         print(f"Predictions: {response['data']}")
+        image_receive(1)
+
     elif response['response_type'] == 'custom_response':
         print("Custom operation completed successfully")
+
+    elif response['response_type'] == 'data_exploration':
+        print("Server has received the request, sending image")
+        image_receive(1)
+
     elif response['response_type'] == 'error':
         print("An error occurred:", response['message'])
     else:
         print("Unknown response type")
 
-    # Show picture
-    # image_path = input("Enter the picture file name you want to saved: ")
-    for i in range(1):
-        received_data = b""
-        print("waiting for server")
-        while True:
-            data = client_socket.recv(4096)
-            if not data:
-                break
-            received_data += data
-
-        print("received picture, showing picture")
-        received_fig = pickle.loads(received_data)
-        plt.figure(received_fig.number)
-        plt.show()
-        print(f"show {i + 1} figure at client side")
-
-    # with open(image_path, 'wb') as file:
-    #    file.write(received_data)
-    # image = Image.open(image_path)
-    # plt.imshow(image)
-    # plt.show()
-
     # Ask if the user wants to continue
-    user_input = input("Do you want to continue (y/n)? ")
+    user_input = input("Do you want to continue (y/n)? : ")
     if user_input.lower() != 'y':
         break
 

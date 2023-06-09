@@ -1,2 +1,3 @@
 db_final/
 data_init.py
+__pycache__/

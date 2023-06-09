@@ -12,13 +12,18 @@ from typing import List, Tuple
 import matplotlib.pyplot as plt
 import seaborn as sn
 
+def encode(data: pd.DataFrame):
+    string_cols = data.select_dtypes(include=['object']).columns.tolist()
+    encoder = OrdinalEncoder()
+    data[string_cols] = encoder.fit_transform(data[string_cols])
+
+
 def preprocess_data(data : pd.DataFrame, preprocessing_methods:list, features:list):
     # Apply data preprocessing methods
     preprocessed_data = data.copy()
 
-    string_cols = preprocessed_data.select_dtypes(include=['object']).columns.tolist()
-    encoder = OrdinalEncoder()
-    preprocessed_data[string_cols] = encoder.fit_transform(preprocessed_data[string_cols])
+    #encode string columns
+    encode(preprocessed_data)
 
     if 'remove_duplicates' in preprocessing_methods:
         preprocessed_data.drop_duplicates(inplace=True)

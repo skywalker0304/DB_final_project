@@ -4,6 +4,7 @@ import seaborn as sn
 import matplotlib.pyplot as plt
 import missingno as msno
 import math
+from preprocess import encode
 
 
 def heatmap(predict: pd.DataFrame, label: pd.DataFrame):
@@ -29,6 +30,8 @@ def missingMap(df: pd.DataFrame):
 
 
 def numeric_feature_barchart(df: pd.DataFrame, nf: list):
+
+    encode(df)
     n = 5
     plt.figure(figsize=[15, 4*math.ceil(len(nf)/n)])
     for i in range(len(nf)):

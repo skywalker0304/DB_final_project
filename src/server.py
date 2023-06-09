@@ -60,9 +60,6 @@ def handle_client(conn, addr, request):
             preprocessing_methods = request['preprocessing_methods']
             model = request['model']
             predict_column = request['predict_column']
-            hidden_layers = request['hidden_layers']
-            epochs = request['epochs']
-            batch_size = request['batch_size']
 
             # Load and preprocess the data
             train_data = pd.DataFrame(train_collection.find({}))
@@ -70,23 +67,6 @@ def handle_client(conn, addr, request):
 
             test_data = pd.DataFrame(test_collection.find({}))
             preprocessed_test_data = preprocess_data(test_data, preprocessing_methods, test_data.columns)
-
-            # # Specify MindsDB model details
-            # model_details = {
-            #     'name': 'my_model',
-            #     'predict': predict_column,
-            #     'data': preprocessed_train_data,
-            #     'learn': {
-            #         'from_data': preprocessed_train_data,
-            #         'to_predict': predict_column,
-            #         'model': model,
-            #         'model_settings': {
-            #             'hidden_layers': hidden_layers,
-            #             'epochs': epochs,
-            #             'batch_size': batch_size
-            #         }
-            #     }
-            # }
 
             # Access the predictions
             train_result = train_model(preprocessed_train_data, preprocessed_test_data, predict_column)
@@ -117,14 +97,15 @@ def handle_client(conn, addr, request):
         conn.close()
 
     elif request['request_type'] == 'mongodb_operation':
-        raise NotImplementedError
 
+        '''
         # Send the response to the client
         conn.send(pickle.dumps(response))
 
         # Close the connection
         print("Close connection")
         conn.close()
+        '''
 
     elif request['request_type'] == 'data_exploration':
         collection = request['collection']
