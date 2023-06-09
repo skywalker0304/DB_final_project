@@ -141,8 +141,20 @@ while True:
     client_socket.send(pickle.dumps(request))
 
     # Receive the response from the server
-    data = client_socket.recv(1024)
-    response = pickle.loads(data)
+    if request['request_type'] == 'mongodb_operation':
+        received_data = b""
+        while True:
+            data = client_socket.recv(4096)
+            if not data:
+                break
+            received_data += data
+
+        response = pickle.loads(received_data)
+
+
+    else:
+        data = client_socket.recv(4096)
+        response = pickle.loads(data)
 
     # Process the response
     if response['response_type'] == 'predictions':
@@ -151,6 +163,9 @@ while True:
 
     elif response['response_type'] == 'custom_response':
         print("Custom operation completed successfully")
+
+    elif response['response_type'] == 'mongodb_operation':
+        print(f"MongoDB operation: \n{response['data']}")
 
     elif response['response_type'] == 'data_exploration':
         print("Server has received the request, sending image")

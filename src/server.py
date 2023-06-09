@@ -8,6 +8,7 @@ import socket
 import pickle
 import threading
 import time
+import os
 
 
 def train_model(preprocessed_data, preprocessed_test_data, predict_column):
@@ -27,6 +28,17 @@ def train_model(preprocessed_data, preprocessed_test_data, predict_column):
     Train_Y = list(map(round, Train_Y))
     Test_Y = list(map(round, Test_Y))
     return (Test_Y, Train_Y, Y)
+
+
+def get_content(filename, substring):
+    with open(filename, 'r') as file:
+        content = file.read()
+        substrings = content.split(substring)
+
+    if len(substrings) >= 3:
+        return substring + substring.join(substrings[2:-1])
+    else:
+        return ""
 
 
 def handle_client(conn, addr, request):
@@ -106,6 +118,26 @@ def handle_client(conn, addr, request):
         print("Close connection")
         conn.close()
         '''
+
+        user_query = request['db_operation']
+        file_path = "tmp.js"
+        js_code = f"use {db};\n{user_query};"
+        print(f"content of file: \n{js_code}")
+        with open(file_path, "w") as js_file:
+            js_file.write(js_code)
+
+        os.system("mongosh < tmp.js > tmp.out")
+        os.system("rm tmp.js")
+        result = get_content("tmp.out", database)
+        os.system("rm tmp.out")
+        print(result)
+        response = {'response_type': 'mongodb_operation', 'data': result}
+        # Send the response to the client
+        conn.send(pickle.dumps(response))
+
+        # Close the connection
+        print("Close connection")
+        conn.close()
 
     elif request['request_type'] == 'data_exploration':
         collection = request['collection']
